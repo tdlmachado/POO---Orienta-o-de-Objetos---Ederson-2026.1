@@ -1,60 +1,83 @@
 public class Foguete {
+
     private String nome;
     private float combustivelRestante;
     private float cargaMaxima;
     private String status;
     private Satelite sateliteCarregado;
 
-    // Construtor
-    public Foguete(String nome, float combustivelRestante, float cargaMaxima) {
+    public Foguete(String nome, float cargaMaxima, float combustivelRestante) {
         this.nome = nome;
-        this.combustivelRestante = combustivelRestante;
         this.cargaMaxima = cargaMaxima;
+        this.combustivelRestante = combustivelRestante;
         this.status = "Pronto";
         this.sateliteCarregado = null;
     }
 
-    public void Abastecer (float Quantidade){
-        if (Quantidade > 0){
-            IO.println("\n+---Abastecimento---+");
-            this.combustivelRestante += Quantidade;
-            IO.println(nome + " foi abastecido com " + Quantidade + " toneladas de combustível.");
+    // GETTERS
+    public String getNome() {
+        return nome;
+    }
+
+    public double getCombustivelRestante() {
+        return combustivelRestante;
+    }
+
+    public double getCargaMaxima() {
+        return cargaMaxima;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Satelite getSateliteCarregado() {
+        return sateliteCarregado;
+    }
+
+    // SETTERS
+    public void setCombustivelRestante(float combustivelRestante) {
+        this.combustivelRestante = combustivelRestante;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSateliteCarregado(Satelite sateliteCarregado) {
+        this.sateliteCarregado = sateliteCarregado;
+    }
+
+    // MÉTODOS
+    public void abastecer(float quantidade) {
+        if (quantidade > 0) {
+            IO.println("\n+--- Abastecimento ---+");
+            combustivelRestante += quantidade;
+            IO.println(nome + " foi abastecido com " + quantidade + " toneladas de combustível.");
         }
     }
 
-    public void Lancar (){
-        if (combustivelRestante > 50){
-            this.status = "Lançando";
-            IO.println(nome + " está pronto para lançamento!!");
-        }else{
-            IO.println(this.nome + " não possui combustivel para lançamento, abasteça ele!!");
+    public void lancar() {
+        if (combustivelRestante > 50) {
+            status = "Lançando";
+            IO.println("🚀 " + nome + " está pronto para lançamento!");
+        } else {
+            IO.println("⚠ " + nome + " não possui combustível suficiente!");
         }
     }
 
-    public void Relatorio(){
-        System.out.println("+---Relatório do Foguete " + this.nome + "---+");
-        System.out.println("Combustível restante: " + this.combustivelRestante + " toneladas");
-        System.out.println("Carga máxima: " + this.cargaMaxima + " kg");
-        System.out.println("Status: " + this.status);
+    public void relatorioFoguete() {
+        IO.println("+--- Relatório do Foguete " + nome + " ---+");
+        IO.println("Combustível restante: " + combustivelRestante + " toneladas");
+        IO.println("Carga máxima: " + cargaMaxima + " kg");
+        IO.println("Status: " + status);
 
-    }
+        if (sateliteCarregado != null) {
+            IO.println("Satélite carregado: " + sateliteCarregado.getNome());
+        } else {
+            IO.println("Satélite carregado: Nenhum");
+        }
 
-    public static void main(String[] args) {
-        // Criando o objeto foguete
-        Foguete foguete1 = new Foguete("Apollo", 10, 25000);
-
-        // Exibindo o relatório inicial
-        foguete1.Relatorio();
-
-        // Abastecendo o foguete com 30 toneladas
-        foguete1.Abastecer(30);
-
-        // Tentando lançar o foguete
-        foguete1.Lancar();
-        IO.println();
-
-        // Exibindo o relatório após as atualizações
-        foguete1.Relatorio();
-
+        IO.println("+------------------------------+");
     }
 }
