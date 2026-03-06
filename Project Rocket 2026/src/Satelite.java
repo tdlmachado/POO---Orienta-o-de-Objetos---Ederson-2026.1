@@ -16,7 +16,7 @@ public class Satelite {
         this.status = "Em solo";
     }
 
-    // GETTERS
+    // Getters de satélite
     public String getNome() {
         return nome;
     }
@@ -45,7 +45,7 @@ public class Satelite {
         return paineisAtivos;
     }
 
-    // SETTERS
+    // Setters de satélite
     public void setEnergia(float energia) {
         this.energia = energia;
     }
@@ -66,8 +66,7 @@ public class Satelite {
         this.paineisAtivos = paineisAtivos;
     }
 
-    // MÉTODOS
-
+    // Método de ativação de paineis
     public void ativarPaineis() {
         if (energia >= 100) {
             IO.println("⚠ Energia do satélite está no máximo!");
@@ -83,14 +82,16 @@ public class Satelite {
         }
     }
 
-//    public void MenuOrbita() {
-//        IO.println("+--- Orbitas ---+");
-//        IO.println("| 1 - LEO");
-//        IO.println("| 2 - GEO");
-//        IO.println("| 3 - Órbita Lunar");
-//        IO.println("Digite qual a órbita desejada: ");
-//    }
+    // Método para exibir menu com órbitas
+    public static void MenuOrbita() {
+        IO.println("+--- Orbitas ---+");
+        IO.println("| 1 - LEO");
+        IO.println("| 2 - GEO");
+        IO.println("| 3 - Órbita Lunar");
+        IO.println("Digite qual a órbita desejada: ");
+    }
 
+    // Método que define a órbita do satélite
     public void definirOrbita(String escolha) {
         switch (escolha) {
             case "1":
@@ -109,6 +110,7 @@ public class Satelite {
         status = "Em órbita";
     }
 
+    // Método de ativação do satélite
     public void ativarSatelite() {
         if (status.equals("Em órbita")) {
             status = "Ativo";
@@ -118,15 +120,17 @@ public class Satelite {
         }
     }
 
+    // Método de envio de dados via satélite
     public void enviarDados() {
-        if (status.equals("Ativo")) {
-            IO.println("+--- Mensagem Enviada ---+");
-            IO.println("Satélite " + nome + " enviando: " + mensagem);
-        } else {
-            IO.println("⚠ Satélite não está ativo para enviar dados.");
+        if (!status.equals("Ativo")) {
+            IO.println("⚠ Satélite não está ativo e não pode enviar dados. Status atual: " + status);
+            return;
         }
+        IO.println("+--- Mensagem Enviada ---+");
+        IO.println("Satélite " + nome + mensagem);
     }
 
+    // Método para impressão de relatório do satélite
     public void relatorioSatelite() {
 
         IO.println("+---Relatório do Satélite " + nome + "---+");
@@ -134,6 +138,7 @@ public class Satelite {
         IO.println("| Energia: " + energia);
         IO.println("| Órbita: " + orbitaAlvo);
         IO.println("| Status: " + status);
+        IO.println("| Mensagem: " + mensagem);
         IO.println("+--------------------------------+");
     }
 }

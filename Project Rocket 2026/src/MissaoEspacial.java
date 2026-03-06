@@ -1,30 +1,58 @@
-public class MissaoEspacial{
-    public static void main(String[] args){
-        CentroControle controle = new CentroControle();
+void main() {
+    CentroControle controle = new CentroControle();
 
-        Foguete Falcon = new Foguete("Falcon XII", 80,80);
-        Foguete Apollo = new Foguete("Apollo XI", 120,0);
+    // Construtor de foguetes e satelites
+    Foguete falcon = new Foguete("Falcon XII", 80, 80);
+    Foguete apollo = new Foguete("Apollo XI", 120, 0);
 
-        Satelite Sputnik = new Satelite("Sputnik",40, 50, "LEO");
-        Satelite Hubble = new Satelite("Hubble",40, 50, "LEO");
-        Satelite JamesWebb = new Satelite("JamesWebb",40, 50, "LEO");
+    Satelite sputnik = new Satelite("Sputnik", 250, 50, "A ser definida!");
+    Satelite hubble = new Satelite("Hubble", 400, 50, "GEO");
+    Satelite jamesWebb = new Satelite("JamesWebb", 850, 50, "Órbita Lunar");
 
-        controle.adicionarFoguete(Falcon);
-        controle.adicionarFoguete(Apollo);
-        controle.adicionarSatelite(Sputnik);
-        controle.adicionarSatelite(Hubble);
-        controle.adicionarSatelite(JamesWebb);
+    // Chamada para adicionar os Foguetes
+    controle.adicionarFoguete(falcon);
+    controle.adicionarFoguete(apollo);
 
-        controle.statusMissao();
-        IO.println();
+    // Chamada para adicionar os satélites
+    controle.adicionarSatelite(sputnik);
+    controle.adicionarSatelite(hubble);
+    controle.adicionarSatelite(jamesWebb);
 
-        // Abastecendo e iniciando a Missão
-        Falcon.abastecer(50);
-        controle.iniciarMissao("Falcon XII","Sputnik");
+    // Imprime o Status da missão com dados dos foguetes e dos satélites
+    controle.statusMissao();
+    IO.println();
 
-        // Satelite em órbita
-        Sputnik.ativarPaineis();
-        Sputnik.enviarDados();
+    // Abastecendo e iniciando a Missão de observação
+    falcon.abastecer(50);
+    controle.iniciarMissao("Falcon XII", "Hubble");
+    IO.println();
 
-    }
+    // Satélite em órbita da Terra
+    controle.ativarPaineisSatelite("Hubble");
+    IO.println();
+    controle.definirOrbitaSatelite("Hubble");
+    controle.ativarSateliteOrbita("Hubble");
+    IO.println();
+    hubble.setMensagem("Enviando dados metereológicos sobre a terra: " +
+            "25°Graus Celsius, " +
+            "humidade em 90%");
+    controle.enviarDadosSatelite("Hubble");
+
+    // Abastecendo e iniciando a Missão de comunicação
+    apollo.abastecer(100);
+    controle.iniciarMissao("Apollo XI", "JamesWebb");
+    IO.println();
+
+    // Satélite de comunicação no espaço
+    controle.ativarPaineisSatelite("JamesWebb");
+    controle.definirOrbitaSatelite("JamesWebb");
+    controle.ativarSateliteOrbita("JamesWebb");
+    IO.println();
+    jamesWebb.setMensagem("Estabeleceu comunicação interespacial com sucesso!");
+    controle.enviarDadosSatelite("JamesWebb");
+
+    // Imprime o relatório após todas as instancias
+    IO.println();
+    IO.println("===== RELATÓRIO FINAL DA MISSÃO =====");
+    controle.statusMissao();
 }

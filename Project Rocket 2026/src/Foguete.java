@@ -1,5 +1,4 @@
 public class Foguete {
-
     private String nome;
     private float combustivelRestante;
     private float cargaMaxima;
@@ -14,7 +13,7 @@ public class Foguete {
         this.sateliteCarregado = null;
     }
 
-    // GETTERS
+    // Getters do foguete
     public String getNome() {
         return nome;
     }
@@ -35,7 +34,7 @@ public class Foguete {
         return sateliteCarregado;
     }
 
-    // SETTERS
+    // Setters do foguete
     public void setCombustivelRestante(float combustivelRestante) {
         this.combustivelRestante = combustivelRestante;
     }
@@ -48,7 +47,7 @@ public class Foguete {
         this.sateliteCarregado = sateliteCarregado;
     }
 
-    // MÉTODOS
+    // Método de abastecimento do foguete
     public void abastecer(float quantidade) {
         if (quantidade > 0) {
             IO.println("\n+--- Abastecimento ---+");
@@ -57,6 +56,7 @@ public class Foguete {
         }
     }
 
+    // Método para lançamento do foguete
     public void lancar() {
         if (combustivelRestante > 50) {
             status = "Lançando";
@@ -66,6 +66,7 @@ public class Foguete {
         }
     }
 
+    // Método que exibe o relatório do foguete
     public void relatorioFoguete() {
         IO.println("+--- Relatório do Foguete " + nome + " ---+");
         IO.println("Combustível restante: " + combustivelRestante + " toneladas");
