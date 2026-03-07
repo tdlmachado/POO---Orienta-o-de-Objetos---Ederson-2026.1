@@ -120,4 +120,14 @@ public class CentroControle {
             s.relatorioSatelite();
         }
     }
+
+    // Método de definição do tipo de satélite
+    public void definirTipoSatelite(String nome){
+        Satelite s  = buscarSatelitePorNome(nome);
+        if(s == null){
+            IO.println("⚠ Satélite não encontrado.");
+            return;
+        }
+        s.definirTipo(s.getTipoSatelite());
+    }
 }

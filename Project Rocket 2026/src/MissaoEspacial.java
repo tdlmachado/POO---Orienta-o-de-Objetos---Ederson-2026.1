@@ -5,9 +5,9 @@ void main() {
     Foguete falcon = new Foguete("Falcon XII", 80, 80);
     Foguete apollo = new Foguete("Apollo XI", 120, 0);
 
-    Satelite sputnik = new Satelite("Sputnik", 250, 50, "A ser definida!");
-    Satelite hubble = new Satelite("Hubble", 400, 50, "GEO");
-    Satelite jamesWebb = new Satelite("JamesWebb", 850, 50, "Órbita Lunar");
+    Satelite sputnik = new Satelite("Sputnik", 250, 50, "A ser definida!","Espionagem");
+    Satelite hubble = new Satelite("Hubble", 400, 50, "GEO", "Científico");
+    Satelite jamesWebb = new Satelite("JamesWebb", 850, 50, "Órbita Lunar", "Comunicação");
 
     // Chamada para adicionar os Foguetes
     controle.adicionarFoguete(falcon);
@@ -32,10 +32,8 @@ void main() {
     IO.println();
     controle.definirOrbitaSatelite("Hubble");
     controle.ativarSateliteOrbita("Hubble");
+    controle.definirTipoSatelite("Hubble");
     IO.println();
-    hubble.setMensagem("Enviando dados metereológicos sobre a terra: " +
-            "25°Graus Celsius, " +
-            "humidade em 90%");
     controle.enviarDadosSatelite("Hubble");
 
     // Abastecendo e iniciando a Missão de comunicação
@@ -45,10 +43,11 @@ void main() {
 
     // Satélite de comunicação no espaço
     controle.ativarPaineisSatelite("JamesWebb");
+    IO.println();
     controle.definirOrbitaSatelite("JamesWebb");
     controle.ativarSateliteOrbita("JamesWebb");
+    controle.definirTipoSatelite("JamesWebb");
     IO.println();
-    jamesWebb.setMensagem("Estabeleceu comunicação interespacial com sucesso!");
     controle.enviarDadosSatelite("JamesWebb");
 
     // Imprime o relatório após todas as instancias
